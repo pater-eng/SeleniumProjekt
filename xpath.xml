@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<bookstore>
+    <book  category="cooking">
+        <title lang="de">Schnitzel Tag</title>
+        <author>Hans Altau</author>
+        <year>2005</year>
+        <price>30.00</price>
+    </book>
+    <book category="coding">
+        <title lang="en">Selenium Einsteigerkurs</title>
+        <author>Kevin Hart</author>
+        <author>Dwayne Johnson</author>
+        <year>2003</year>
+        <price>49.99</price>
+    </book>
+    <book category="sport" cover="paperback">
+        <title lang="de">Sport Almanach</title>
+        <author>Christopher Loyd</author>
+        <year>2003</year>
+        <price>39.95</price>
+    </book>
+    <book category="coding">
+        <title lang="de">C# für Profis</title>
+        <author>Guildo Horn</author>
+        <year>2005</year>
+        <price>59.95</price>
+    </book>
+</bookstore>
