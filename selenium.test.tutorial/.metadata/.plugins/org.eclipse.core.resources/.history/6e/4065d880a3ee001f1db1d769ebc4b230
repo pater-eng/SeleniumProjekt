@@ -1,0 +1,50 @@
+package de.selenium.auto;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+
+public class LesenCsvDateien {
+    public static void main(String[] args) {
+        // Pfad zum Verzeichnis, in dem die CSV-Dateien liegen
+        String directoryPath = "C:\\Users\\engoulou\\Selenium\\Daten";
+        System.out.println("Directory: "+directoryPath);
+        List<String[]> alleDaten = new ArrayList<>();
+
+        try (Stream<Path> pfade = Files.list(Paths.get(directoryPath))) {
+        	System.out.println("PFAD: "+pfade);
+            pfade.filter(Files::isRegularFile)
+                 .filter(p -> p.toString().endsWith(".csv"))
+                 .forEach(pfad -> {
+                	 System.out.println("pfad-Element: "+pfad.toString());
+                     try (BufferedReader br = Files.newBufferedReader(pfad)) {
+                         String zeile;
+                         while ((zeile = br.readLine()) != null) {
+                             // Annahme: CSV-Felder werden durch Kommas getrennt.
+                             // Bei komplexeren CSV-Strukturen (z. B. Felder mit Kommas) ist eine robustere Lösung nötig.
+                             String[] felder = zeile.split(",");
+                             alleDaten.add(felder);
+                             System.out.println("AlleDaten: "+alleDaten);
+                         }
+                     } catch (IOException e) {
+                         e.printStackTrace();
+                     }
+                 });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Beispielhafte Ausgabe aller gelesenen Daten:
+        for (String[] zeile : alleDaten) {
+            for (String feld : zeile) {
+                System.out.print(feld + "\t");
+            }
+            System.out.println();
+        }
+    }
+}

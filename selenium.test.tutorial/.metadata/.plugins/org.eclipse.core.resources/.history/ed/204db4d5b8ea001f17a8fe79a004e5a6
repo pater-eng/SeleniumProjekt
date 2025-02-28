@@ -1,0 +1,20 @@
+package de.selenium.pages;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+
+public class SeleniumTestForm1Page {
+	WebDriver driver;
+
+	public SeleniumTestForm1Page(WebDriver driver) {
+		super();
+		this.driver = driver;
+		// verwendet, um die 4 WebElemente der Seite zu initialisieren, die im Rahmen des Page Object Modells definiert wurden
+		PageFactory.initElements(driver, this);
+		
+		
+	}
+	
+	
+	
+}

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TestNavigationRemoteServerSeleniumChrome" project="de.selenium.projekt1" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="de.selenium.pages.tests.TestNavigationRemoteServerSeleniumChrome" time="5.292" displayname="TestNavigationRemoteServerSeleniumChrome" uniqueid="[engine:junit-vintage]/[runner:de.selenium.pages.tests.TestNavigationRemoteServerSeleniumChrome]">
+    <testcase name="testLogin" classname="de.selenium.pages.tests.TestNavigationRemoteServerSeleniumChrome" time="5.292" displayname="testLogin" uniqueid="[engine:junit-vintage]/[runner:de.selenium.pages.tests.TestNavigationRemoteServerSeleniumChrome]/[test:testLogin(de.selenium.pages.tests.TestNavigationRemoteServerSeleniumChrome)]"/>
+  </testsuite>
+</testrun>

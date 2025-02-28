@@ -1,0 +1,105 @@
+package de.selenium.pages.tests;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.time.Duration;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import de.selenium.pages.SeleniumAppilcationPage;
+import de.selenium.pages.SeleniumDragDropPage;
+import de.selenium.pages.SeleniumHomePage;
+import de.selenium.pages.SeleniumLoginPage;
+import de.selenium.pages.SeleniumWebShopAGB;
+import de.selenium.pages.SeleniumWebShopKasse;
+import de.selenium.pages.SeleniumWebShopProdukte;
+
+public class TestSeleniumWebShopChromePage {
+	WebDriver driver;
+
+	@Before
+	public void setUp() throws Exception {
+		System.out.println("initialisiere Webdriver.");
+		System.setProperty("webdriver.chrome.driver", 
+				"./drivers/chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+		// Browser auf Maximum vergrößer
+		driver.manage().window().maximize();
+		driver.get("https://seleniumkurs.codingsolo.de"); 
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		System.out.println("Testfall abgeschlossen. -Aufräumen");	
+		//driver.close();
+	}
+
+	@Test
+	public void test() {
+		System.out.println("Starte Test Login mit Erfog");	
+
+
+		// Arrange
+		// Anmeldung ist erfolgreich
+		SeleniumLoginPage loginPage = new SeleniumLoginPage(driver);
+		loginPage.zugangsdatenEingeben("selenium42","R5vxI0j60");
+		loginPage.loginButtonAnklicken();
+
+
+		// Navigation zum Formular
+		SeleniumHomePage homePage = new SeleniumHomePage(driver);
+		homePage.menuAusklappen();
+		homePage.seleniumTestAppLinkAnklicken();
+
+		SeleniumAppilcationPage appPage = new SeleniumAppilcationPage(driver);
+		appPage.seleniumLinkWebshopTestseiteAnklicken();
+		
+		SeleniumWebShopProdukte webShopProdukte = new SeleniumWebShopProdukte(driver);
+		SeleniumWebShopKasse webShopKasse = new SeleniumWebShopKasse(driver);
+		SeleniumWebShopAGB webShopAGB = new SeleniumWebShopAGB(driver);
+
+		// Act
+		webShopProdukte.produktSucheAusfuehren("Brems");
+		
+		webShopProdukte.produktAnzahlAuswaehlen("Bremssattel Hinten Audi", 4);
+		webShopProdukte.produktInWarenKorbLegen("Bremssattel Hinten Audi");
+		
+		webShopProdukte.produktAnzahlAuswaehlen("Bremsscheiden Set Vorne Audi", 2);
+		webShopProdukte.produktInWarenKorbLegen("Bremssattel Hinten Audi");
+		
+		String preis1 = webShopProdukte.preisAuslesen();
+		webShopProdukte.warenKorbAnklicken();
+		webShopProdukte.zurKasseAnklicken();
+		
+		webShopKasse.promoCodeEingeben("codingsolo");
+		webShopKasse.promoCodeAktivierenAnklicken();
+		
+		String promoInfo = webShopKasse.promoInfoAuslesen();
+		String preis2 = webShopKasse.preisAuslesen();
+
+		webShopKasse.bestellungAnklicken();
+		
+		webShopAGB.landAuswählen("Germany");
+		webShopAGB.aGBAkzeptiert();
+		webShopAGB.weiterAnklicken();
+		
+		String danke = driver.findElement(By.className("wrapperTwo")).getText();
+		// Assert
+		
+		// preis1 == 
+		assertEquals(preis1,"760.58");
+		//promoinfo == aktiviert
+		assertEquals(promoInfo,"aktiviert");
+		// preis == 684
+		assertEquals(preis2,"684");
+
+	}
+
+}

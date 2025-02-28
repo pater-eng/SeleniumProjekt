@@ -1,0 +1,23 @@
+package de.selenium.konfiguration;
+
+import java.io.InputStream;
+import java.util.Properties;
+
+public class Config {
+
+	private static String configfile = "meinConfig.properties";
+	private static Properties loadProperties() {
+		
+		try {
+			ClassLoader loader = Thread.currentThread().getContextClassLoader();
+			
+			Properties props = new Properties();
+			InputStream is = loader.getSystemResourceAsStream(configfile);
+			props.load(is);
+			return props;
+			
+		}catch(Exception e) {
+			throw new RuntimeException("keine Konfigurationsdatei gefunden", e);
+		}
+	}
+}

@@ -1,0 +1,218 @@
+package de.selenium.daten;
+
+public class Form1ParameterizedSeleniumKursChrome {
+
+
+	private String testName;
+	private String browsername;
+	private String username;
+	private String password;
+	private String betreff;
+	private String name;
+	private String kursTitel;
+	private int[] firmenBox1;
+	private int[] firmenBox2;
+	private String assert1;
+	private String assert2;
+
+	public Form1ParameterizedSeleniumKursChrome(String testName, String browsername, String username, String password, String betreff,
+			String name, String kursTitel, int[] firmenBox1, int[] firmenBox2, String assert1, String assert2) {
+		
+		this.browsername = browsername;
+		this.username = username;
+		this.password = password;
+		this.betreff = betreff;
+		this.name = name;
+		this.kursTitel = kursTitel;
+		this.firmenBox1 = firmenBox1;
+		this.firmenBox2 = firmenBox2;
+		this.assert1 = assert1;
+		this.assert2 = assert2;
+	}
+	
+	
+
+	public Form1ParameterizedSeleniumKursChrome() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	
+
+	public String getTestName() {
+		return testName;
+	}
+
+
+
+	public void setTestName(String testName) {
+		this.testName = testName;
+	}
+
+	public String getBrowsername() {
+		return browsername;
+	}
+
+	public void setBrowsername(String browsername) {
+		this.browsername = browsername;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getBetreff() {
+		return betreff;
+	}
+
+	public void setBetreff(String betreff) {
+		this.betreff = betreff;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getKursTitel() {
+		return kursTitel;
+	}
+
+	public void setKursTitel(String kursTitel) {
+		this.kursTitel = kursTitel;
+	}
+
+	public int[] getFirmenBox1() {
+		return firmenBox1;
+	}
+
+	public void setFirmenBox1(int[] firmenBox1) {
+		this.firmenBox1 = firmenBox1;
+	}
+
+	public int[] getFirmenBox2() {
+		return firmenBox2;
+	}
+
+	public void setFirmenBox2(int[] firmenBox2) {
+		this.firmenBox2 = firmenBox2;
+	}
+
+	public String getAssert1() {
+		return assert1;
+	}
+
+	public void setAssert1(String assert1) {
+		this.assert1 = assert1;
+	}
+
+	public String getAssert2() {
+		return assert2;
+	}
+
+	public void setAssert2(String assert2) {
+		this.assert2 = assert2;
+	}
+
+	/*@Before
+	public void setUp() throws Exception {
+		System.out.println("initialisiere Webdriver.");
+		driver = DriverHelper.getDriver(browsername); 
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		// Browser auf Maximum vergrößer
+		driver.manage().window().maximize();
+		driver.get(Config.getBaseUrl());
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		System.out.println("Test abgeschlossen- ich räume");
+		driver.close();
+	}
+
+	@Test
+	public void testForm1() {
+		System.out.println("Starte TestForm1 Testseite");
+
+		// Arrange
+
+		// Login
+		SeleniumLoginPage loginPage = new SeleniumLoginPage(driver);
+		loginPage.zugangsdatenEingeben("selenium42","R5vxI0j60");
+		loginPage.loginButtonAnklicken();
+
+		// Navigation zum Formular
+		SeleniumHomePage homePage = new SeleniumHomePage(driver);
+		homePage.menuAusklappen();
+		homePage.seleniumTestAppLinkAnklicken();
+
+		SeleniumAppilcationPage appPage = new SeleniumAppilcationPage(driver);
+		appPage.seleniumTestFrom1LinkAnklicken();
+
+		// Starte Formular
+		SeleniumTestForm1Page testForm1Page = new SeleniumTestForm1Page(driver);
+		testForm1Page.betreffEingeben(betreff);
+		testForm1Page.nameEingeaben(name);
+
+		testForm1Page.selectAuswaehlen1(kursTitel);
+
+		testForm1Page.selectAuswaelen2From(firmenBox1);
+		testForm1Page.firmenUebernehmen();
+		testForm1Page.selectAuswaelen2To(firmenBox2);
+		testForm1Page.ausgewaehlteFirmaNachObenVerschieben();
+
+		// Act
+
+		testForm1Page.formularSpeichern();
+
+		// Assert
+
+		String erfolgsMeldung = testForm1Page.statusMeldungAuslesen();
+		assertTrue(erfolgsMeldung.contains(assert1));
+
+		String erstesElement = testForm1Page.erstesElementDerListeAuslesen();
+		assertEquals(erstesElement, assert2);
+	}
+
+	@Parameters(name = "{0}")
+	public static Collection<Object[]> provideTestData() throws Exception {
+
+		Collection<Object[]> collection;
+
+		Object[][] daten = {
+				{ "Test Form 1 Test 1 Chrome", "chrome", "selenium102", "codingsolo", "Parametrisierter Test 1", "Dieter",
+						"Java Grundlagen Kurs mit Dieter", new int[] { 2, 4, 6 }, new int[] { 2 },
+						"Java Grundlagen Kurs", "Magazzini Alimentari Riuniti" },
+				{ "Test Form 1 Test 2 Chrome", "chrome", "selenium102", "codingsolo", "Parametrisierter Test 2", "Miriam",
+						"Python Grundlagen Kurs mit Dieter", new int[] { 2, 4, 6 }, new int[] { 2 },
+						"Python Grundlagen Kurs", "Magazzini Alimentari Riuniti" },
+				{ "Test Form 1 Test 2 FireFox",  "fireFox", "selenium102", "codingsolo", "Parametrisierter Test 2", "Miriam",
+						"Python Grundlagen Kurs mit Dieter", new int[] { 2, 4, 6 }, new int[] { 2 },
+						"Python Grundlagen Kurs", "Magazzini Alimentari Riuniti" },
+				{ "Test Form 1 Test 2 IE", "ie", "selenium102", "codingsolo", "Parametrisierter Test 2", "Miriam",
+						"Python Grundlagen Kurs mit Dieter", new int[] { 2, 4, 6 }, new int[] { 2 },
+						"Python Grundlagen Kurs", "Magazzini Alimentari Riuniti" } };
+
+		List<Object[]> listObjects = Arrays.asList(daten);
+		collection = new ArrayList<Object[]>(listObjects);
+
+		return collection;
+	}*/
+
+}

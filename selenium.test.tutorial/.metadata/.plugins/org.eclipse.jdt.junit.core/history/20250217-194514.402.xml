@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="Rerun de.selenium.pages.tests.TestKatzenSucheImplizitAsynChrome.testImplizitWait" project="de.selenium.projekt1" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testcase name="testImplizitWait" classname="de.selenium.pages.tests.TestKatzenSucheImplizitAsynChrome" time="3.975"/>
+</testrun>

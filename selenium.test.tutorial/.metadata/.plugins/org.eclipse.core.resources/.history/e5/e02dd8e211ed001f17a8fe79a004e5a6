@@ -1,0 +1,55 @@
+package de.selenium.pages;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class SeleniumWebElementRadioButtonPage {
+
+	WebDriver driver;
+	//Hier haben wir die Lokatoren definieren
+	
+	// Menu Radio
+	@FindBy(xpath = "//input[@value='radio1']")
+	private WebElement radioButton1;
+
+	@FindBy(xpath = "//input[@value='radio2']")
+	private WebElement radioButton2;
+
+	@FindBy(xpath = "//input[@value='radio3']")
+	private WebElement radioButton3;
+
+	public SeleniumWebElementRadioButtonPage(WebDriver driver) {
+		this.driver = driver;
+		// verwendet, um die WebElemente der Seite zu initialisieren, die im Rahmen des Page Object Modells definiert wurden
+		PageFactory.initElements(driver, this);
+	}
+
+	public void radio1Aktivieren() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebElement radioButtonElement = wait.until(ExpectedConditions.visibilityOfElementLocated((By) radioButton1));
+		radioButtonElement.click();
+	}
+	public void radio2Aktivieren() {
+		radioButton2.click();
+	}
+	public void radio3Aktivieren() {
+		radioButton3.click();
+	}
+
+	public boolean radioButton1StatusAuslesen() {
+		return radioButton1.isSelected();
+	}
+	public boolean radioButton2StatusAuslesen() {
+		return radioButton2.isSelected();
+	}
+	public boolean radioButton3StatusAuslesen() {
+		return radioButton3.isSelected();
+	}
+}

@@ -1,0 +1,24 @@
+XPATH
+
+//tagName[@attribute='value']
+
+//input[@name='username8383212']
+
+Reg
+
+//tagName[contains(@attribute,'value')]
+
+//input[contains(@name,'username')]
+
+
+CSS Selector
+
+tagName[attribute='value']
+
+input[name='password19291923']
+
+Reg
+
+tagName[attribute*='value']
+
+input[name*='password']

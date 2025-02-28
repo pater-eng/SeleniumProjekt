@@ -1,0 +1,81 @@
+package de.selenium.pages.tests;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+
+public class LirePlusieursCsv {
+    public static void main(String[] args) {
+        // Pfad zum Verzeichnis, in dem die CSV-Dateien liegen
+        String directoryPath = "chemin/vers/dossier/csv";
+        List<String[]> alleDaten = new ArrayList<>();
+
+        try (Stream<Path> pfade = Files.list(Paths.get(directoryPath))) {
+            pfade.filter(Files::isRegularFile)
+                 .filter(p -> p.toString().endsWith(".csv"))
+                 .forEach(pfad -> {
+                     try (BufferedReader br = Files.newBufferedReader(pfad)) {
+                         String zeile;
+                         while ((zeile = br.readLine()) != null) {
+                             // Annahme: CSV-Felder werden durch Kommas getrennt.
+                             // Bei komplexeren CSV-Strukturen (z. B. Felder mit Kommas) ist eine robustere Lösung nötig.
+                             String[] felder = zeile.split(",");
+                             alleDaten.add(felder);
+                         }
+                     } catch (IOException e) {
+                         e.printStackTrace();
+                     }
+                 });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Beispielhafte Ausgabe aller gelesenen Daten:
+        for (String[] zeile : alleDaten) {
+            for (String feld : zeile) {
+                System.out.print(feld + "\t");
+            }
+            System.out.println();
+        }
+    }
+}
+
+
+
+/*import java.io.FileReader;
+import java.io.IOException;
+import java.util.List;
+
+//
+import com.opencsv.CSVReader;
+
+public class MultiCSVReader {
+
+    public static void readMultipleCSVFiles(List<String> filePaths) {
+        for (String filePath : filePaths) {
+            try (CSVReader csvReader = new CSVReader(new FileReader(filePath))) {
+                String[] nextRecord;
+                while ((nextRecord = csvReader.readNext()) != null) {
+                    // Traitement de chaque enregistrement
+                    for (String cell : nextRecord) {
+                        System.out.print(cell + "\t");
+                    }
+                    System.out.println();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        List<String> csvFiles = List.of("chemin/vers/premier.csv", "chemin/vers/deuxieme.csv");
+        readMultipleCSVFiles(csvFiles);
+    }
+}
+*/

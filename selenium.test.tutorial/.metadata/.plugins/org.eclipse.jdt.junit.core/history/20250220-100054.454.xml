@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="Rerun de.selenium.otto.tests.TestSeleniumOttoHomePage.test" project="de.selenium.projekt1" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testcase name="test" classname="de.selenium.otto.tests.TestSeleniumOttoHomePage" time="12.288"/>
+</testrun>

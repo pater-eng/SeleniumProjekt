@@ -1,0 +1,25 @@
+package de.selenium.auslesen.config;
+
+public class MehrereExcelFileAuslesen {
+
+    // Innere Klasse zur Speicherung von Dateiname und Daten
+    public static class ExcelFileData {
+        private String fileName;
+        private List<Object[]> data;
+
+        public ExcelFileData(String fileName, List<Object[]> data) {
+            this.fileName = fileName;
+            this.data = data;
+        }
+
+        public String getFileName() {
+            return fileName;
+        }
+
+        public List<Object[]> getData() {
+            return data;
+        }
+    }
+
+    // ... (restlicher Code)
+}

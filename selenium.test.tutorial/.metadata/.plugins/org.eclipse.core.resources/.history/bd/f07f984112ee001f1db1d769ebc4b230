@@ -1,0 +1,9 @@
+#
+#Konfiguration für das TestPortal codingsolo
+#
+
+baseurl https://seleniumkurs.codingsolo.de
+chromebrowser webdriver.chrome.driver
+
+chromedriver ./drivers/chromedriver.exe
+

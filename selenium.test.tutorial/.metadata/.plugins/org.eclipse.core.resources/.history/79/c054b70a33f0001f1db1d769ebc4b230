@@ -1,0 +1,69 @@
+package de.selenium.pages;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class SeleniumTestform3DataDrivenPage {
+	WebDriver driver;
+	//Hier haben wir die Lokatoren definieren
+	
+	@FindBy(id = "form-widgets-bezeichnung")
+	private WebElement bezeichnung;
+	
+	@FindBy(id = "form-widgets-kennung")
+	private WebElement kennung;
+	
+	@FindBy(id = "form-widgets-anschrift")
+	private WebElement anschrift;
+	
+	@FindBy(id = "form-widgets-telefon")
+	private WebElement telefon;
+	
+	@FindBy(id = "form-widgets-str")
+	private WebElement str;
+	
+	@FindBy(id = "form-widgets-plz")
+	private WebElement plz ;
+	
+	@FindBy(id = "form-widgets-ort")
+	private WebElement ort;
+	
+	@FindBy(id = "form-widgets-auswahl1")
+	private WebElement select_auswahl1;
+	
+	@FindBy(id = "form-widgets-name")
+	private WebElement name;
+	
+	@FindBy(id = "form-widgets-vorname")
+	private WebElement vorname;
+	
+	@FindBy(id = "form-widgets-geburt")
+	private WebElement geburt;
+	
+	@FindBy(id = "form-widgets-telefonv")
+	private WebElement telefonv;
+	
+	@FindBy(id = "form-widgets-strv")
+	private WebElement strv;
+	
+	@FindBy(id = "form-widgets-plzv")
+	private WebElement plzv;
+	
+	@FindBy(id = "form-widgets-ortv")
+	private WebElement ortv;
+	
+	@FindBy(name = "form.button.speichern")
+	private WebElement btn_senden;
+	
+	@FindBy(id = "status")
+	private WebElement text_status;
+	
+	public SeleniumTestform3DataDrivenPage(WebDriver driver) {
+		this.driver = driver;
+		// verwendet, um die WebElemente der Seite zu initialisieren, die im Rahmen des Page Object Modells definiert wurden
+		PageFactory.initElements(driver, this);
+	}
+
+}

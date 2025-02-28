@@ -1,0 +1,31 @@
+package de.selenium.lokatoren;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Lokatoren {
+	static WebDriver driver;
+	public static void main(String[] args) {
+		System.out.println("initialisiere Webdriver.");
+		System.setProperty("webdriver.chrome.driver", 
+				"./drivers/chromedriver.exe");
+
+		driver = new ChromeDriver();
+		driver.manage().window();
+		driver.get("https://seleniumkurs.codingsolo.de");
+		//WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//		driver.findElement(By.id("__ac_name")).sendKeys("selenium42");
+//		driver.findElement(By.id("__ac_password")).sendKeys("R5vxI0j60");
+//		driver.findElement(By.name("buttons.login")).click(); // Click aktion
+		
+		// Alternative mit CSS-Selektor
+		driver.findElement(By.cssSelector("#__ac_name")).sendKeys("selenium42");
+	    driver.findElement(By.cssSelector("[placeholder=Passwort]")).sendKeys("R5vxI0j60");
+		driver.findElement(By.cssSelector("input.btn-primary[name='buttons.login']")).click();
+
+
+
+	}
+
+}

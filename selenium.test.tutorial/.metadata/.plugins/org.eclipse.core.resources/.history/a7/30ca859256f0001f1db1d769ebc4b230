@@ -1,0 +1,85 @@
+package de.selenium.apache.poi;
+
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import java.io.*;
+import java.nio.file.*;
+import java.util.*;
+
+public class ApachePOI2 {
+
+    public List<Object[]> getExcelDataFromDirectory(String directoryPath) throws IOException {
+        List<Object[]> output = new ArrayList<>();
+
+        // Excel-Dateien im Verzeichnis finden
+        try (Stream<Path> paths = Files.walk(Paths.get(directoryPath))) {
+            paths.filter(Files::isRegularFile)
+                 .filter(path -> path.toString().endsWith(".xlsx"))
+                 .forEach(path -> {
+                     try {
+                         // Daten aus jeder Datei extrahieren und zur Liste hinzufügen
+                         output.addAll(getExcelDataFromFile(path.toString()));
+                     } catch (IOException e) {
+                         System.err.println("Fehler beim Verarbeiten der Datei: " + path);
+                         e.printStackTrace();
+                     }
+                 });
+        }
+
+        return output;
+    }
+
+    private List<Object[]> getExcelDataFromFile(String filePath) throws IOException {
+        List<Object[]> data = new ArrayList<>();
+
+        try (FileInputStream is = new FileInputStream(filePath);
+             Workbook workbook = new XSSFWorkbook(is)) {
+
+            // Annahme: Daten befinden sich im ersten Sheet
+            Sheet sheet = workbook.getSheetAt(0);
+
+            for (Row row : sheet) {
+                if (row.getRowNum() >= 1) { // Überspringe die Kopfzeile
+                    List<Object> values = new ArrayList<>();
+                    for (Cell cell : row) {
+                        switch (cell.getCellType()) {
+                            case STRING:
+                                values.add(cell.getStringCellValue());
+                                break;
+                            case NUMERIC:
+                                if (DateUtil.isCellDateFormatted(cell)) {
+                                    values.add(cell.getDateCellValue());
+                                } else {
+                                    values.add(cell.getNumericCellValue());
+                                }
+                                break;
+                            case BOOLEAN:
+                                values.add(cell.getBooleanCellValue());
+                                break;
+                            case FORMULA:
+                                values.add(cell.getCellFormula());
+                                break;
+                            default:
+                                values.add(null);
+                        }
+                    }
+                    data.add(values.toArray());
+                }
+            }
+        }
+
+        return data;
+    }
+
+    public static void main(String[] args) {
+        ApachePOI poi = new ApachePOI();
+        try {
+            List<Object[]> data = poi.getExcelDataFromDirectory("C:\\Users\\engoulou\\Selenium\\Daten\\datadriven");
+            for (Object[] row : data) {
+                System.out.println(Arrays.toString(row));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}

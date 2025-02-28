@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TestKatzenSucheImplizitAsynChrome" project="de.selenium.projekt1" tests="1" started="1" failures="0" errors="1" ignored="0">
+  <testsuite name="de.selenium.pages.tests.TestKatzenSucheImplizitAsynChrome" time="0.249">
+    <testcase name="testImplizitWait" classname="de.selenium.pages.tests.TestKatzenSucheImplizitAsynChrome" time="0.249">
+      <error>org.openqa.selenium.SessionNotCreatedException: Could not start a new session. Possible causes are invalid address of the remote server or browser start-up failure. 
+Host info: host: 'DE-ADN-H10DHW3', ip: '192.168.2.198'
+Build info: version: '4.28.1', revision: '73f5ad48a2'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '20.0.1'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Command: [null, newSession {capabilities=[Capabilities {acceptInsecureCerts: true, browserName: firefox, moz:debuggerAddress: true, moz:firefoxOptions: {prefs: {remote.active-protocols: 3}}}]}]&#13;
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:563)&#13;
+	at org.openqa.selenium.remote.RemoteWebDriver.startSession(RemoteWebDriver.java:245)&#13;
+	at org.openqa.selenium.remote.RemoteWebDriver.&lt;init&gt;(RemoteWebDriver.java:174)&#13;
+	at org.openqa.selenium.firefox.FirefoxDriver.&lt;init&gt;(FirefoxDriver.java:155)&#13;
+	at org.openqa.selenium.firefox.FirefoxDriver.&lt;init&gt;(FirefoxDriver.java:150)&#13;
+	at org.openqa.selenium.firefox.FirefoxDriver.&lt;init&gt;(FirefoxDriver.java:132)&#13;
+	at org.openqa.selenium.firefox.FirefoxDriver.&lt;init&gt;(FirefoxDriver.java:127)&#13;
+	at org.openqa.selenium.firefox.FirefoxDriver.&lt;init&gt;(FirefoxDriver.java:112)&#13;
+	at org.openqa.selenium.firefox.FirefoxDriver.&lt;init&gt;(FirefoxDriver.java:102)&#13;
+	at de.selenium.pages.tests.TestKatzenSucheImplizitAsynChrome.setUp(TestKatzenSucheImplizitAsynChrome.java:26)&#13;
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)&#13;
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)&#13;
+	at org.junit.internal.runners.statements.RunBefores.invokeMethod(RunBefores.java:33)&#13;
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:24)&#13;
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)&#13;
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)&#13;
+	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)&#13;
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)&#13;
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)&#13;
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)&#13;
+	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)&#13;
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)&#13;
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)&#13;
+	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)&#13;
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)&#13;
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)&#13;
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)&#13;
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:93)&#13;
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:40)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:529)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:756)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:452)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:210)&#13;
+Caused by: java.io.UncheckedIOException: java.io.IOException: Cannot run program "./drivers/geckodriver.exe": CreateProcess error=216, Die Version von %1 ist mit der ausgeführten Windows-Version nicht kompatibel. Überprüfen Sie die Systeminformationen des Computers, und wenden Sie sich anschließend an den Herausgeber der Software&#13;
+	at org.openqa.selenium.os.ExternalProcess$Builder.start(ExternalProcess.java:195)&#13;
+	at org.openqa.selenium.remote.service.DriverService.start(DriverService.java:208)&#13;
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:117)&#13;
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)&#13;
+	... 35 more&#13;
+Caused by: java.io.IOException: Cannot run program "./drivers/geckodriver.exe": CreateProcess error=216, Die Version von %1 ist mit der ausgeführten Windows-Version nicht kompatibel. Überprüfen Sie die Systeminformationen des Computers, und wenden Sie sich anschließend an den Herausgeber der Software&#13;
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1140)&#13;
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1074)&#13;
+	at org.openqa.selenium.os.ExternalProcess$Builder.start(ExternalProcess.java:193)&#13;
+	... 38 more&#13;
+Caused by: java.io.IOException: CreateProcess error=216, Die Version von %1 ist mit der ausgeführten Windows-Version nicht kompatibel. Überprüfen Sie die Systeminformationen des Computers, und wenden Sie sich anschließend an den Herausgeber der Software&#13;
+	at java.base/java.lang.ProcessImpl.create(Native Method)&#13;
+	at java.base/java.lang.ProcessImpl.&lt;init&gt;(ProcessImpl.java:500)&#13;
+	at java.base/java.lang.ProcessImpl.start(ProcessImpl.java:159)&#13;
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1111)&#13;
+	... 40 more&#13;
+&#13;
+</error>
+    </testcase>
+  </testsuite>
+</testrun>

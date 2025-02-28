@@ -1,0 +1,51 @@
+package de.selenium.pages;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class SeleniumTestForm1Page {
+	WebDriver driver;
+
+	@FindBy(tagName = "h1")
+	private WebElement testFromeHeadline;
+	
+	@FindBy(id = "form-widgets-betreff")
+	private WebElement inputBetreff;
+	
+	@FindBy(id = "form-widgets-name")
+	private WebElement inputName;
+	
+	@FindBy(id = "form-widgets-auswahl1")
+	private WebElement selectAuswahl1;
+	
+	@FindBy(id = "form-widgets-auswahl2-from")
+	private WebElement selectAuswahl2From;
+	
+	@FindBy(name = "from2toButton")
+	private WebElement btnFrom2toButton;
+	
+	@FindBy(id = "form-widgets-auswahl2-to")
+	private WebElement selectAuswahl2To;
+		
+	@FindBy(name = "upButton")
+	private WebElement btnUpButton;
+	
+	@FindBy(name = "form.buttons.speichern")
+	private WebElement btnSpeichern;
+	
+	@FindBy(id = "message")
+	private WebElement meldungMessage;
+	
+	
+	public SeleniumTestForm1Page(WebDriver driver) {
+		super();
+		this.driver = driver;
+		// verwendet, um die 4 WebElemente der Seite zu initialisieren, die im Rahmen des Page Object Modells definiert wurden
+		PageFactory.initElements(driver, this);
+	}
+	
+	
+	
+}

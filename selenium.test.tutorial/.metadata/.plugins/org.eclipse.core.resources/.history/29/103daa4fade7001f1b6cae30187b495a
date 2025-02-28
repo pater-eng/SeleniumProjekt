@@ -1,0 +1,18 @@
+package de.selenium.tests;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+import de.selenium.auto.Auto;
+
+class TestfallAuto {
+
+	@Test
+	void test() {
+		Auto vw = new Auto(1500, 1000, 50);
+		// asserEquals prüft, dass das Erwartete Ergebnis 10.0 gleich die vw.berechnberechneBenzinVerbrauch() ist
+		assertEquals(10.0, vw.berechneBenzinVerbrauch());
+	}
+
+}

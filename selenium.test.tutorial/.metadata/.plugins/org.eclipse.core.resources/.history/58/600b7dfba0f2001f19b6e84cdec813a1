@@ -1,0 +1,87 @@
+package de.selenium.pages;
+
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class SeleniumLoginPage {
+
+	private WebDriver driver;
+
+	private WebDriverWait wait;
+
+	//Hier haben wir 4 Lokatoren definieren
+
+	//Eingabefeld Benutzername
+	//private By inputBenutzername = By.cssSelector("input.form-control[type='text']");
+	private By inputBenutzername = By.id("__ac_name");
+	//Eingabefeld Passwort
+	//	private By inputPasswort = By.cssSelector("input.form-control[type='password']");
+	private By inputPasswort = By.id("__ac_password");
+
+	//Button für die Anmeldung
+	private By btnAnmeldung = By.cssSelector("input.btn-primary");
+	// Statusmeldung
+	//	private By statusMeldung = By.cssSelector("div.portalMessage:nth-child(1)");
+	private By statusMeldung = By.cssSelector("div.portalMessage:nth-child(1)");
+
+	private By btnMehrErfahren = By.className("btn-outline-light");
+
+	private By btnOkWeitermachen = By.cssSelector(".body > dialog > div > div:nth-child(1) > button");
+	private By btnAblehnen = By.cssSelector(".body > dialog > div > div:nth-child(2) > button");
+	private By btnNeinAnpassen = By.cssSelector(".body > dialog > div > div:nth-child(3) > button");
+
+	public SeleniumLoginPage(WebDriver driver) {
+		this.driver = driver;
+		// verwendet, um die 4 WebElemente der Seite zu initialisieren, die im Rahmen des Page Object Modells definiert wurden
+		PageFactory.initElements(driver, this);
+	}
+
+	public void zugangsdatenEingeben(String benutzername, String passwort) {
+		this.driver.findElement(inputBenutzername).sendKeys(benutzername);
+		this.driver.findElement(inputPasswort).sendKeys(passwort);
+	}
+
+	public void loginButtonAnklicken() {
+		this.driver.findElement(btnAnmeldung).click();
+	}
+
+	public String statusMeldungAuslesen() {
+		return this.driver.findElement(statusMeldung).getText();
+	}
+
+	public void mehrErfahrenAnklicken() {
+		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(btnMehrErfahren));
+		element.click();
+
+		//this.driver.findElement(btnMehrErfahren).click();
+	}
+
+	public void cookiesOKWeitermachenAnklicken() {
+		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(btnOkWeitermachen));
+		element.click();
+		//		this.driver.findElement(btnOkWeitermachen).click();
+	}
+
+	public void cookiesAblehnenAnklicken() {
+		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(btnAblehnen));
+		element.click();
+		//		this.driver.findElement(btnAblehnen).click();
+	}
+
+	public void cookiesNeinAnpassenAnklicken() {
+		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(btnNeinAnpassen));
+		element.click();
+		//		this.driver.findElement(btnNeinAnpassen).click();
+	}
+}

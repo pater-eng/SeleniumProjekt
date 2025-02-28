@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="Rerun testForm1[Test Form 1 Test 2 Chrome]" project="de.selenium.projekt1" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="de.selenium.pages.tests.TestSpezielleForm1ParameterizedChrome" time="8.985" displayname="TestSpezielleForm1ParameterizedChrome" uniqueid="[engine:junit-vintage]/[runner:de.selenium.pages.tests.TestSpezielleForm1ParameterizedChrome]">
+    <testsuite name="[Test Form 1 Test 2 Chrome]" time="4.635" uniqueid="[engine:junit-vintage]/[runner:de.selenium.pages.tests.TestSpezielleForm1ParameterizedChrome]/[test:%5BTest Form 1 Test 2 Chrome%5D%5B0%5D]">
+      <testcase name="testForm1" classname="de.selenium.pages.tests.TestSpezielleForm1ParameterizedChrome" time="4.635" displayname="testForm1[Test Form 1 Test 2 Chrome]" uniqueid="[engine:junit-vintage]/[runner:de.selenium.pages.tests.TestSpezielleForm1ParameterizedChrome]/[test:%5BTest Form 1 Test 2 Chrome%5D%5B0%5D]/[test:testForm1%5BTest Form 1 Test 2 Chrome%5D(de.selenium.pages.tests.TestSpezielleForm1ParameterizedChrome)]"/>
+    </testsuite>
+    <testsuite name="[Test Form 1 Test 2 Chrome]" time="4.349" uniqueid="[engine:junit-vintage]/[runner:de.selenium.pages.tests.TestSpezielleForm1ParameterizedChrome]/[test:%5BTest Form 1 Test 2 Chrome%5D%5B1%5D]">
+      <testcase name="testForm1" classname="de.selenium.pages.tests.TestSpezielleForm1ParameterizedChrome" time="4.349" displayname="testForm1[Test Form 1 Test 2 Chrome]" uniqueid="[engine:junit-vintage]/[runner:de.selenium.pages.tests.TestSpezielleForm1ParameterizedChrome]/[test:%5BTest Form 1 Test 2 Chrome%5D%5B1%5D]/[test:testForm1%5BTest Form 1 Test 2 Chrome%5D(de.selenium.pages.tests.TestSpezielleForm1ParameterizedChrome)]"/>
+    </testsuite>
+  </testsuite>
+</testrun>

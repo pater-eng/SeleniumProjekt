@@ -1,0 +1,77 @@
+package de.selenium.pages.tests;
+
+import static org.junit.Assert.assertTrue;
+
+import java.util.concurrent.TimeUnit;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+import de.selenium.pages.SeleniumAppilcationPage;
+import de.selenium.pages.SeleniumHomePage;
+import de.selenium.pages.SeleniumKatzenSuchenPage;
+import de.selenium.pages.SeleniumLoginPage;
+
+
+public class TestKatzenSucheImplizitAsynChrome {
+	WebDriver driver;
+
+	@Before
+	public void setUp() throws Exception {
+		System.out.println("initialisiere Webdriver.");
+		System.setProperty("webdriver.chrome.driver", 
+				"./drivers/chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.get("https://seleniumkurs.codingsolo.de"); 
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		System.out.println("Test abgeschlossen- ich r�ume");
+		// driver.close();
+	}
+
+	@Test
+	public void testImplizitWait() {
+		System.out.println("Starte Test AJAX Anwendung mit Implizit Wait");
+
+		// Arrange
+
+		// Login
+		// Anmeldung ist erfolgreich
+		SeleniumLoginPage loginPage = new SeleniumLoginPage(driver);
+		loginPage.zugangsdatenEingeben("selenium42","R5vxI0j60");
+		loginPage.loginButtonAnklicken();
+
+
+		// Navigation zum Formular
+		SeleniumHomePage homePage = new SeleniumHomePage(driver);
+		homePage.menuAusklappen();
+		homePage.seleniumTestAppLinkAnklicken();
+
+		SeleniumAppilcationPage appPage = new SeleniumAppilcationPage(driver);
+		appPage.seleniumLinkKatzensucheTestseiteAJAXAnklicken();
+
+		SeleniumKatzenSuchenPage katzenPage = new SeleniumKatzenSuchenPage(driver);
+		String beschreibung = katzenPage.beschreibungAuslesen();
+		String srcLinkKatzenBild1 = katzenPage.srcLinkImgKatze1Auslesen();
+
+		// Act
+
+		katzenPage.nextPage();
+		katzenPage.anzahlBilderEingeben("6");
+		String srcLinkKatzenBild2 = katzenPage.srcLinkImgKatze2Auslesen();
+
+		// Assert
+
+		assertTrue(beschreibung.contains("Lieblingskatze"));
+		assertTrue(srcLinkKatzenBild1.contains("-ssxkBCAy"));
+		assertTrue(srcLinkKatzenBild2.contains("29RH1pQb5"));
+
+	}
+
+}

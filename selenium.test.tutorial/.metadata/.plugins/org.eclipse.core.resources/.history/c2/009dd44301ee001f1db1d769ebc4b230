@@ -1,0 +1,52 @@
+package de.selenium.otto.pages;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class SeleniumOttoHomePage {
+	
+	WebDriver driver;
+	
+	WebDriverWait wait;
+	//Hier haben wir die Lokatoren definieren
+
+	// sucheFeld
+	//@FindBy(xpath = "//input[@data-qa-id='my-search-field']")
+	@FindBy(css ="input[placeholder= 'Wonach suchst du?']")
+	private WebElement sucheFeld;
+	
+	@FindBy(xpath ="//div[@id='onetrust-banner-sdk']/..//button[contains(@class, 'onetrust-accept-btn-handler')]")
+	private WebElement buttonOK;
+	
+	@FindBy(id="onetrust-reject-all-handler")
+	private WebElement buttonAblehnen;
+	
+	public SeleniumOttoHomePage(WebDriver driver) {
+		this.driver = driver;
+		// verwendet, um die WebElemente der Seite zu initialisieren, die im Rahmen des Page Object Modells definiert wurden
+		PageFactory.initElements(driver, this);
+	}
+	
+	public void sucheEingeben(String suche) {
+		sucheFeld.sendKeys(suche);
+	}
+	
+	public void buttonOkBestaestigen() {
+		wait = new WebDriverWait(driver, Duration.ofMinutes(5));
+		buttonOK.click();
+	}
+	
+	public void buttonAblehnen() {
+		buttonAblehnen.click();
+	}
+	
+	
+
+}

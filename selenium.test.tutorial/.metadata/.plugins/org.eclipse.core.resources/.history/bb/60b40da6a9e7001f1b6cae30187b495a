@@ -1,0 +1,19 @@
+package de.selenium.projekt1;
+
+public class Auto {
+
+	int kilometerStandAktuell;
+	int kilometerStandBevor;
+	double liter;
+	
+	double berechneBenzinVerbrauch() {
+		return (kilometerStandAktuell- kilometerStandBevor)/liter;
+		
+		
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

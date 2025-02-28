@@ -1,0 +1,271 @@
+package de.selenium.pages.tests;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
+import org.openqa.selenium.WebDriver;
+
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvValidationException;
+
+import de.selenium.daten.CsvReaderDaten;
+import de.selenium.daten.Form1ParameterizedSeleniumKursChrome;
+import de.selenium.konfiguration.Config;
+import de.selenium.konfiguration.DriverHelper;
+import de.selenium.pages.SeleniumAppilcationPage;
+import de.selenium.pages.SeleniumHomePage;
+import de.selenium.pages.SeleniumLoginPage;
+import de.selenium.pages.SeleniumTestForm1Page;
+
+
+@RunWith(Parameterized.class)
+public class TestForm1ParameterizedSeleniumKursChrome {
+
+	WebDriver driver;
+
+	String browsername;
+	String username;
+	String password;
+	String betreff;
+	String name;
+	String kursTitel;
+	int[] firmenBox1;
+	int[] firmenBox2;
+	String assert1;
+	String assert2;
+
+	public TestForm1ParameterizedSeleniumKursChrome(String testName, String browsername, String username, String password, String betreff,
+			String name, String kursTitel, int[] firmenBox1, int[] firmenBox2, String assert1, String assert2) {
+
+		this.browsername = browsername;
+		this.username = username;
+		this.password = password;
+		this.betreff = betreff;
+		this.name = name;
+		this.kursTitel = kursTitel;
+		this.firmenBox1 = firmenBox1;
+		this.firmenBox2 = firmenBox2;
+		this.assert1 = assert1;
+		this.assert2 = assert2;
+	}
+
+	public TestForm1ParameterizedSeleniumKursChrome() {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Before
+	public void setUp() throws Exception {
+		System.out.println("initialisiere Webdriver.");
+		driver = DriverHelper.getDriver(browsername); 
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		// Browser auf Maximum vergrößer
+		driver.manage().window().maximize();
+		driver.get(Config.getBaseUrl());
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		System.out.println("Test abgeschlossen- ich räume");
+		driver.close();
+	}
+
+	@Test
+	public void testForm1() {
+		System.out.println("Starte TestForm1 Testseite");
+
+		// Arrange
+
+		// Login
+		SeleniumLoginPage loginPage = new SeleniumLoginPage(driver);
+		loginPage.zugangsdatenEingeben("selenium42","R5vxI0j60");
+		loginPage.loginButtonAnklicken();
+
+		// Navigation zum Formular
+		SeleniumHomePage homePage = new SeleniumHomePage(driver);
+		homePage.menuAusklappen();
+		homePage.seleniumTestAppLinkAnklicken();
+
+		SeleniumAppilcationPage appPage = new SeleniumAppilcationPage(driver);
+		appPage.seleniumTestFrom1LinkAnklicken();
+
+		// Starte Formular
+		SeleniumTestForm1Page testForm1Page = new SeleniumTestForm1Page(driver);
+		testForm1Page.betreffEingeben(betreff);
+		testForm1Page.nameEingeaben(name);
+
+		testForm1Page.selectAuswaehlen1(kursTitel);
+
+		testForm1Page.selectAuswaelen2From(firmenBox1);
+		testForm1Page.firmenUebernehmen();
+		testForm1Page.selectAuswaelen2To(firmenBox2);
+		testForm1Page.ausgewaehlteFirmaNachObenVerschieben();
+
+		// Act
+
+		testForm1Page.formularSpeichern();
+
+		// Assert
+
+		String erfolgsMeldung = testForm1Page.statusMeldungAuslesen();
+		assertTrue(erfolgsMeldung.contains(assert1));
+
+		String erstesElement = testForm1Page.erstesElementDerListeAuslesen();
+		assertEquals(erstesElement, assert2);
+	}
+
+
+	@Parameters(name = "{0}")
+	public static  Collection<Object[]> provideTestData1() throws Exception {
+		Collection<Object[]> collection = null;
+		TestForm1ParameterizedSeleniumKursChrome daten = new TestForm1ParameterizedSeleniumKursChrome();
+		List<Object[]> listObjects = daten.readCsvFile(Path.of("C:/Users/engoulou/Selenium/Daten/"));
+		collection.addAll(listObjects);
+		return collection;
+
+	}
+
+
+	/*
+	@Parameters(name = "{0}")
+	public static Collection<Object[]> provideTestData() throws Exception {
+
+		Collection<Object[]> collection;
+
+		Object[][] daten = {
+				{ "Test Form 1 Test 1 Chrome", "chrome", "selenium102", "codingsolo", "Parametrisierter Test 1", "Dieter",
+						"Java Grundlagen Kurs mit Dieter", new int[] { 2, 4, 6 }, new int[] { 2 },
+						"Java Grundlagen Kurs", "Magazzini Alimentari Riuniti" },
+				{ "Test Form 1 Test 2 Chrome", "chrome", "selenium102", "codingsolo", "Parametrisierter Test 2", "Miriam",
+						"Python Grundlagen Kurs mit Dieter", new int[] { 2, 4, 6 }, new int[] { 2 },
+						"Python Grundlagen Kurs", "Magazzini Alimentari Riuniti" },
+				{ "Test Form 1 Test 2 FireFox",  "fireFox", "selenium102", "codingsolo", "Parametrisierter Test 2", "Miriam",
+						"Python Grundlagen Kurs mit Dieter", new int[] { 2, 4, 6 }, new int[] { 2 },
+						"Python Grundlagen Kurs", "Magazzini Alimentari Riuniti" },
+				{ "Test Form 1 Test 2 IE", "ie", "selenium102", "codingsolo", "Parametrisierter Test 2", "Miriam",
+						"Python Grundlagen Kurs mit Dieter", new int[] { 2, 4, 6 }, new int[] { 2 },
+						"Python Grundlagen Kurs", "Magazzini Alimentari Riuniti" } };
+
+		List<Object[]> listObjects = Arrays.asList(daten);
+		collection = new ArrayList<Object[]>(listObjects);
+
+		return collection;
+	}*/
+
+	
+	public static List<Object[]> readCsvFile(Path filePath) {
+		List<Object[]> collection = new ArrayList<>();
+		
+		System.out.println("Auslesen der Datei : " + filePath.getFileName());
+		System.out.println(" Existenz prüfen : " + filePath.getNameCount());
+		List<Form1ParameterizedSeleniumKursChrome> forme1Liste = new ArrayList<>();
+
+		try (CSVReader reader = new CSVReader(new FileReader(filePath.toFile()))) {
+			// Überspringe die erste Zeile (z.B. den Header)
+			reader.readNext();
+			reader.getParser().parseLine(";");
+			String[] nextLine;
+			while ((nextLine = reader.readNext()) != null) {
+				System.out.println(Arrays.toString(nextLine)); // Jeder Zeile ausgeben
+				// Iteriere über die Collection und füge Form1ParameterizedSeleniumKursChrome zu forme1Liste hinzu
+				Form1ParameterizedSeleniumKursChrome forme1ParaListe = mapToForm1(nextLine);
+				forme1Liste.add(forme1ParaListe);
+			}
+		} catch (IOException | CsvValidationException e) {
+			e.printStackTrace();
+		}
+
+		// Ausgabe der geladenen Form1
+		forme1Liste.forEach(System.out::println);
+		for (Form1ParameterizedSeleniumKursChrome liste : forme1Liste) {
+	        collection.add(new Object[]{liste}); // Füge jedes Form1-Objekt als Array in die Collection hinzu
+	    }
+		//collection.forEach(System.out::println);
+		return collection;
+	}
+
+	
+
+	public static Form1ParameterizedSeleniumKursChrome mapToForm1(String[] daten) {
+		Form1ParameterizedSeleniumKursChrome formPojo = null ;
+	    for (int index = 0; index < daten.length; index++) {
+	        if (daten[index] != null) {
+	            String[] values = daten[index].split(";"); // Annahme: Semikolon als Trennzeichen
+	            if (values.length > 0) {
+	                System.out.println("Erstes Element: " + values[0]);
+	                System.out.println("Zweites Element: " + values[1]);
+
+	                String[] listeDatenBox1 = {values[7], values[8], values[9]};
+	                String[] listeDatenBox2 = {values[10], values[11]};
+	                int[] firmenBox1 = convertToIntArray(listeDatenBox1);
+	                int[] firmenBox2 = convertToIntArray(listeDatenBox2);
+	                System.out.println("INDEX: " + index);
+	                
+	                formPojo = new Form1ParameterizedSeleniumKursChrome();
+	                formPojo.setTestName(values[0]);
+	                formPojo.setBrowsername(values[1]);
+	                formPojo.setUsername(values[2]);
+	                formPojo.setPassword(values[3]);
+	                formPojo.setBetreff(values[4]);
+	                formPojo.setName(values[5]);
+	                formPojo.setKursTitel(values[6]);
+	                formPojo.setFirmenBox1(firmenBox1);
+	                formPojo.setFirmenBox2(firmenBox2);
+	                formPojo.setAssert1(values[12]);
+	                formPojo.setAssert2(values[13]);
+	                
+	                for(int i = 0; i < firmenBox1.length; i++) {
+	                	 System.out.println("BOX1: "+firmenBox1[i]);
+	                }
+	               
+	               /* return new Form1ParameterizedSeleniumKursChrome(
+	                    values[0], values[1], values[2], values[3], values[4],
+	                    values[5], values[6], firmenBox1, firmenBox2,
+	                    values[12], values[13]
+	                );*/
+	            }
+	        }
+	    }
+	    return formPojo;
+	}
+
+	public static int[] convertToIntArray(String[] daten) {
+		int[] intArray = new int[daten.length];
+		for (int i = 0; i < daten.length; i++) {
+			intArray[i] = Integer.parseInt(daten[i]);
+		}
+		return intArray;
+	}
+
+	public  static String[] convertToStringArray(int[] daten) {
+		String[] stringArray = new String[daten.length];
+		for (int i = 0; i < daten.length; i++) {
+			stringArray[i] = String.valueOf(daten[i]);
+		}
+		return stringArray;
+	}
+
+	public static String getDaten(String[] alleDaten) {
+		for (String feld : alleDaten) {
+			System.out.print(feld + "\t");
+			return feld;
+		}
+		return null;
+
+	}
+
+}

@@ -1,0 +1,73 @@
+package de.selenium.pages.tests;
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvException;
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+
+public class MultiCSVReader {
+    public static void main(String[] args) {
+        String directoryPath = "chemin/vers/votre/répertoire/csv";
+        List<String[]> allData = new ArrayList<>();
+
+        try {
+            Files.list(Paths.get(directoryPath))
+                    .filter(Files::isRegularFile)
+                    .filter(path -> path.toString().endsWith(".csv"))
+                    .forEach(path -> {
+                        try (CSVReader reader = new CSVReader(new FileReader(path.toFile()))) {
+                            List<String[]> data = reader.readAll();
+                            allData.addAll(data);
+                        } catch (IOException | CsvException e) {
+                            e.printStackTrace();
+                        }
+                    });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Traitement des données
+        for (String[] row : allData) {
+            // Par exemple, afficher chaque ligne
+            System.out.println(String.join(", ", row));
+        }
+    }
+}
+
+/*
+//import com.opencsv.CSVReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.List;
+
+public class MultiCSVReader {
+
+    public static void readMultipleCSVFiles(List<String> filePaths) {
+        for (String filePath : filePaths) {
+            try (CSVReader csvReader = new CSVReader(new FileReader(filePath))) {
+                String[] nextRecord;
+                while ((nextRecord = csvReader.readNext()) != null) {
+                    // Traitement de chaque enregistrement
+                    for (String cell : nextRecord) {
+                        System.out.print(cell + "\t");
+                    }
+                    System.out.println();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        List<String> csvFiles = List.of("chemin/vers/premier.csv", "chemin/vers/deuxieme.csv");
+        readMultipleCSVFiles(csvFiles);
+    }
+}
+*/

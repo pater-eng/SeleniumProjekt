@@ -1,0 +1,95 @@
+package de.selenium.tests;
+
+import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.time.Duration;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class TestLogingNavigationLokatorenFormular {
+	WebDriver driver;
+	
+	@Before
+	public void setUp() throws Exception {
+		System.out.println("initialisiere Webdriver.");
+		System.setProperty("webdriver.chrome.driver", 
+				"./drivers/chromedriver.exe");
+		driver = new ChromeDriver();
+		// Browser auf Maximum vergrößer
+		driver.manage().window().maximize();
+		driver.get("https://seleniumkurs.codingsolo.de"); 
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		System.out.println("Testfall abgeschlossen. -Aufräumen");	
+		//driver.close();
+	}
+
+	@Test
+	public void test() {
+		System.out.println("Starte Test Login mit Erfog");	
+		// Arrange
+		// Anmeldung ist erfolgreich
+		driver.findElement(By.cssSelector("input.form-control[type='text']")).sendKeys("selenium42");
+		driver.findElement(By.cssSelector("input.form-control[type='password']")).sendKeys("R5vxI0j60");
+		// Hier ist ein AbsolutePath
+		//driver.findElement(By.xpath("/html/body/section/div[2]/div/div[2]/div/div[1]/form/input[3]")).click();
+		// Hier ist RelativPath immer besser
+		driver.findElement(By.cssSelector("input.btn-primary[type='submit']")).click();
+		
+		// Act
+		// Link 1 wird geklickt
+		driver.findElement(By.id("portaltab-burger-menu")).click();	
+		// Danach wird Link 2 geklickt
+		// Verwende einen expliziten Wait (z.B. WebDriverWait), um darauf zu warten, dass das Element sichtbar und interaktiv ist.
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebElement link = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Selenium Testapplikationen")));
+		link.click();
+		
+		// Zum Schluss wird Link 3 geklickt
+		driver.findElement(By.linkText("Selenium Test Form1")).click();
+	
+		// TextFeld
+		driver.findElement(By.id("form-widgets-betreff")).sendKeys("Automatischer Test");
+		driver.findElement(By.id("form-widgets-name")).sendKeys("Pater");
+		// Erster SelectBox
+		Select selectAuswahl1 = new Select(driver.findElement(By.id("form-widgets-auswahl1")));
+		selectAuswahl1.selectByVisibleText("Selenium Automatisierung mit Dieter");
+		
+		// Zweiter SelectElement oder Multiselect
+		Select selectAuswahl2 = new Select(driver.findElement(By.id("form-widgets-auswahl2-from")));
+		selectAuswahl2.selectByIndex(0);
+		selectAuswahl2.selectByIndex(2);
+		selectAuswahl2.selectByIndex(5);
+		selectAuswahl2.selectByIndex(6);
+		
+		// Mit Click auf Button Element nach Rechts schieben. 
+		driver.findElement(By.name("from2toButton")).click();
+		
+				
+		// driter SelectElement oder Multiselect
+	/**	Select selectAuswahl3 = new Select(driver.findElement(By.id("form-widgets-auswahl2-to")));
+		selectAuswahl3.selectByIndex(0);
+		selectAuswahl3.selectByIndex(2);
+		selectAuswahl3.selectByIndex(5);
+		selectAuswahl3.selectByIndex(6);
+		**/
+		
+		// Assert
+		String erfolgMeldung = driver.findElement(By.tagName("h1")).getText();
+		//Vergleich 
+		assertEquals(erfolgMeldung, "Selenium Test Form1");
+	}
+
+}

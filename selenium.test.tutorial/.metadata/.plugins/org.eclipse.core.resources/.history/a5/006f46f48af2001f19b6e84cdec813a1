@@ -1,0 +1,24 @@
+package de.selenium.konfiguration;
+
+import org.openqa.selenium.WebDriver;
+
+public class DriverHelper {
+
+	/*
+	 * Die private Methode throwExceptionWhenNull(String browser) prüft, ob der übergebene Browser-String null ist. 
+	 * Falls ja, wird eine RuntimeException mit einer entsprechenden Fehlermeldung ausgelöst.
+	 * */
+	private static void throwExceptionWhenNull(String browser) {
+		if (browser == null) {
+			throw new RuntimeException("Es wurde kein WebDriver angegeben.");
+		}
+	}
+
+	public static WebDriver getDriver(String browser) {
+		throwExceptionWhenNull(browser);
+		AvailableBrowser currentBrowser = AvailableBrowser.valueOf(browser.toUpperCase());
+		WebDriver driver = currentBrowser.createDriver();
+		return driver;
+	}
+
+}

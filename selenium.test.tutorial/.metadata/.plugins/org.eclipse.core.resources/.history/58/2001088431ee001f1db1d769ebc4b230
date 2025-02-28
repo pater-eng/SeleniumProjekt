@@ -1,0 +1,31 @@
+package de.selenium.pages.tests;
+
+//import com.opencsv.CSVReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.List;
+
+public class MultiCSVReader {
+
+    public static void readMultipleCSVFiles(List<String> filePaths) {
+        for (String filePath : filePaths) {
+            try (CSVReader csvReader = new CSVReader(new FileReader(filePath))) {
+                String[] nextRecord;
+                while ((nextRecord = csvReader.readNext()) != null) {
+                    // Traitement de chaque enregistrement
+                    for (String cell : nextRecord) {
+                        System.out.print(cell + "\t");
+                    }
+                    System.out.println();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        List<String> csvFiles = List.of("chemin/vers/premier.csv", "chemin/vers/deuxieme.csv");
+        readMultipleCSVFiles(csvFiles);
+    }
+}

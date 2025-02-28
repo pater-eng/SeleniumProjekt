@@ -1,0 +1,109 @@
+package de.selenium.otto.pages;
+
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.SearchContext;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class SeleniumZalandoHomePage {
+
+	WebDriver driver;
+
+	WebDriverWait wait;
+	//Hier haben wir die Lokatoren definieren
+
+	// sucheFeld
+	//@FindBy(xpath = "//input[@data-qa-id='my-search-field']")
+	//@FindBy(css ="input[placeholder= 'Wonach suchst du?']")
+	@FindBy(css ="input[id= 'header-search-input']")
+	private WebElement sucheFeld;
+
+	//@FindBy(xpath ="//div[@id='onetrust-banner-sdk']//button[contains(@class, 'onetrust-accept-btn-handler')]")
+	//@FindBy(css ="#onetrust-banner-sdk #onetrust-accept-btn-handler")
+	@FindBy(css ="button[data-testid='uc-accept-all-button']")
+	private WebElement buttonOK;
+
+	@FindBy(id="onetrust-reject-all-handler")
+	private WebElement buttonAblehnen;
+
+	public SeleniumZalandoHomePage(WebDriver driver) {
+		this.driver = driver;
+		// verwendet, um die WebElemente der Seite zu initialisieren, die im Rahmen des Page Object Modells definiert wurden
+		PageFactory.initElements(driver, this);
+	}
+
+	public void sucheEingeben(String suche) {
+		sucheFeld.sendKeys(suche);
+	}
+
+/*	public void buttonOkBestaestigen() {
+	    // Beispiel: Zuerst prüfen, ob das Element überhaupt vorhanden ist
+	    List<WebElement> cookieButtons = driver.findElements(By.cssSelector("button[data-testid='uc-accept-all-button']"));
+	    System.out.println("ELEMENT: "+cookieButtons.toString());
+	    if (!cookieButtons.isEmpty()) {
+	        WebElement btn = cookieButtons.get(0);
+	        // Optional: Warten, bis das Element sichtbar und klickbar ist
+	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	        try {
+	            btn = wait.until(ExpectedConditions.elementToBeClickable(btn));
+	            btn.click();
+	        } catch (TimeoutException e) {
+	            System.err.println("Cookie-Banner wurde gefunden, aber war nicht klickbar: " + e.getMessage());
+	        }
+	    } else {
+	        System.out.println("Cookie-Banner nicht vorhanden – überspringe den Klick.");
+	    }
+	} */
+
+	/*public void acceptCookies() {
+	    // Warten, bis das Element sichtbar und klickbar ist
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	   // try {
+	        WebElement acceptButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
+	            By.cssSelector("button[data-testid='uc-accept-all-button']")));
+	        wait.until(ExpectedConditions.elementToBeClickable(acceptButton));
+	        acceptButton.click();
+	        System.out.println("Cookie-Banner akzeptiert.");
+	    //} catch (TimeoutException e) {
+	        System.err.println("Cookie-Button nicht gefunden oder nicht klickbar, versuche per JavaScript.");
+	        // Alternative: Klicke per JavaScript, falls der normale Klick fehlschlägt
+	        List<WebElement> buttons = driver.findElements(By.cssSelector("button[data-testid='uc-accept-all-button']"));
+	        if (!buttons.isEmpty()) {
+	            JavascriptExecutor js = (JavascriptExecutor) driver;
+	            js.executeScript("arguments[0].click();", buttons.get(0));
+	            System.out.println("Cookie-Banner per JavaScript akzeptiert.");
+	        } else {
+	            System.err.println("Cookie-Button konnte auch per JavaScript nicht gefunden werden.");
+	        }
+	    //}
+	} */
+	
+	public void acceptCookiesWithCss() {
+		// Beispiel: Falls der Cookie-Banner in einem Shadow DOM liegt
+		WebElement shadowHost = driver.findElement(By.cssSelector("#usercentrics-root"));
+		SearchContext shadowRoot = shadowHost.getShadowRoot();
+		WebElement acceptButton = new WebDriverWait(driver, Duration.ofSeconds(15))
+		    .until(ExpectedConditions.elementToBeClickable(
+		        shadowRoot.findElement(By.cssSelector("button[data-testid='uc-accept-all-button']"))));
+		acceptButton.click();
+
+
+	}
+
+
+	public void buttonAblehnen() {
+		buttonAblehnen.click();
+	}
+
+
+
+}

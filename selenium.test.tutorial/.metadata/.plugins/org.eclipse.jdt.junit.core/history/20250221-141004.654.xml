@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="Rerun testForm3[Test Form3 Testfall 3 Chrome]" project="de.selenium.projekt1" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="de.selenium.pages.tests.TestForm3ParameterizedSeleniumKursChrome" time="5.43" displayname="TestForm3ParameterizedSeleniumKursChrome" uniqueid="[engine:junit-vintage]/[runner:de.selenium.pages.tests.TestForm3ParameterizedSeleniumKursChrome]">
+    <testsuite name="[Test Form3 Testfall 3 Chrome]" time="5.43" uniqueid="[engine:junit-vintage]/[runner:de.selenium.pages.tests.TestForm3ParameterizedSeleniumKursChrome]/[test:%5BTest Form3 Testfall 3 Chrome%5D]">
+      <testcase name="testForm3" classname="de.selenium.pages.tests.TestForm3ParameterizedSeleniumKursChrome" time="5.43" displayname="testForm3[Test Form3 Testfall 3 Chrome]" uniqueid="[engine:junit-vintage]/[runner:de.selenium.pages.tests.TestForm3ParameterizedSeleniumKursChrome]/[test:%5BTest Form3 Testfall 3 Chrome%5D]/[test:testForm3%5BTest Form3 Testfall 3 Chrome%5D(de.selenium.pages.tests.TestForm3ParameterizedSeleniumKursChrome)]"/>
+    </testsuite>
+  </testsuite>
+</testrun>

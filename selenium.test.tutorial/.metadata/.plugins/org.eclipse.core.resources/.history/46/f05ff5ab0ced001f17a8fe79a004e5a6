@@ -1,0 +1,48 @@
+package de.selenium.pages;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class SeleniumWebElementRadioButtonPage {
+
+	WebDriver driver;
+	//Hier haben wir die Lokatoren definieren
+	
+	// Menu Radio
+	@FindBy(xpath = "//input[@value='radio1']")
+	private WebElement radioButton1;
+
+	@FindBy(xpath = "//input[@value='radio2']")
+	private WebElement radioButton2;
+
+	@FindBy(xpath = "//input[@value='radio3']")
+	private WebElement radioButton3;
+
+	public SeleniumWebElementRadioButtonPage(WebDriver driver) {
+		this.driver = driver;
+		// verwendet, um die WebElemente der Seite zu initialisieren, die im Rahmen des Page Object Modells definiert wurden
+		PageFactory.initElements(driver, this);
+	}
+
+	public void checkBox1Aktivieren() {
+		radioButton1.click();
+	}
+	public void checkBox2Aktivieren() {
+		radioButton2.click();
+	}
+	public void checkBox3Aktivieren() {
+		radioButton3.click();
+	}
+
+	public boolean radioButton1StatusAuslesen() {
+		return radioButton1.isEnabled();
+	}
+	public boolean radioButton2StatusAuslesen() {
+		return radioButton2.isSelected();
+	}
+	public boolean radioButton3StatusAuslesen() {
+		return radioButton3.isSelected();
+	}
+}

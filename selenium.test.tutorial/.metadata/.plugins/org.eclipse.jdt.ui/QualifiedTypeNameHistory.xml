@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="de.selenium.pages.SeleniumLoginPageMitAnnotation"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.WebDriver"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.support.ui.Select"/>
+    <fullyQualifiedTypeName name="de.selenium.pages.SeleniumLoginPage"/>
+    <fullyQualifiedTypeName name="de.selenium.pages.SeleniumHomePage"/>
+    <fullyQualifiedTypeName name="de.selenium.pages.SeleniumAppilcationPage"/>
+    <fullyQualifiedTypeName name="de.selenium.pages.SeleniumTestForm1Page"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.interactions.Actions"/>
+    <fullyQualifiedTypeName name="de.selenium.pages.SeleniumDragDropPage"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.WebElement"/>
+    <fullyQualifiedTypeName name="de.selenium.pages.SeleniumIFramePage"/>
+    <fullyQualifiedTypeName name="de.selenium.pages.SeleniumWebElementCheckboxPage"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.By"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.support.FindBy"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.support.FindBys"/>
+    <fullyQualifiedTypeName name="de.selenium.pages.SeleniumWebElementRadioButtonPage"/>
+    <fullyQualifiedTypeName name="java.time.Duration"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.support.ui.ExpectedConditions"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.JavascriptExecutor"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.support.ui.WebDriverWait"/>
+</qualifiedTypeNameHistroy>

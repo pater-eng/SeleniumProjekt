@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TestForm1ParameterizedSeleniumKursChrome" project="de.selenium.projekt1" tests="4" started="4" failures="0" errors="0" ignored="0">
+  <testsuite name="de.selenium.pages.tests.TestForm1ParameterizedSeleniumKursChrome" time="9.255">
+    <testsuite name="[Test Form 1 Test 1 FireFox]" time="5.188">
+      <testcase name="testForm1[Test Form 1 Test 1 FireFox]" classname="de.selenium.pages.tests.TestForm1ParameterizedSeleniumKursChrome" time="5.188"/>
+    </testsuite>
+    <testsuite name="[Test Form 1 Test 2 FireFox]" incomplete="true">
+      <testcase name="testForm1[Test Form 1 Test 2 FireFox]" classname="de.selenium.pages.tests.TestForm1ParameterizedSeleniumKursChrome" incomplete="true"/>
+    </testsuite>
+    <testsuite name="[Test Form 1 Test 2 FireFox]" incomplete="true">
+      <testcase name="testForm1[Test Form 1 Test 2 FireFox]" classname="de.selenium.pages.tests.TestForm1ParameterizedSeleniumKursChrome" incomplete="true"/>
+    </testsuite>
+    <testsuite name="[Test Form 1 Test 2 FireFox]" time="4.067">
+      <testcase name="testForm1[Test Form 1 Test 2 FireFox]" classname="de.selenium.pages.tests.TestForm1ParameterizedSeleniumKursChrome" time="4.103"/>
+    </testsuite>
+  </testsuite>
+</testrun>

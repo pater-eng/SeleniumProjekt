@@ -1,0 +1,66 @@
+package de.selenium.pages;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class SeleniumWebElementCheckboxPage {
+
+	WebDriver driver;
+	//Hier haben wir die Lokatoren definieren
+
+
+	// Menu Checkbox
+	/*@FindBys({
+		@FindBy(id = "checkBoxOption1"),
+		@FindBy(name = "checkBoxOption1")
+	})*/
+	private WebElement checkBox1 = driver.findElement(By.id("checkBoxOption1"));
+
+	//@FindBy(id = "checkBoxOption2")
+	private WebElement checkBox2;
+
+	//@FindBy(id = "checkBoxOption3")
+	private WebElement checkBox3;
+
+	public SeleniumWebElementCheckboxPage(WebDriver driver) {
+		this.driver = driver;
+		// verwendet, um die WebElemente der Seite zu initialisieren, die im Rahmen des Page Object Modells definiert wurden
+		PageFactory.initElements(driver, this);
+	}
+
+	public void checkBox1Aktivieren() {
+		
+		//WebElement linkWebElementCheckbox1 = driver.findElement(By.id("checkBoxOption1"));
+		//linkWebElementCheckbox1.click();
+		 checkBox1.click();
+	}
+	public void checkBox2Aktivieren() {
+		WebElement linkWebElementCheckbox2 = driver.findElement(By.id("checkBoxOption2"));
+		linkWebElementCheckbox2.click();
+		//checkBox2.click();
+	}
+	public void checkBox3Aktivieren() {
+		WebElement linkWebElementCheckbox3 = driver.findElement(By.id("checkBoxOption3"));
+		linkWebElementCheckbox3.click();
+		//checkBox3.click();
+	}
+
+	public boolean checkBox1StatusAuslesen() {
+		return checkBox1.isSelected();
+	}
+	public boolean checkBox2StatusAuslesen() {
+		return checkBox2.isSelected();
+	}
+	public boolean checkBox3StatusAuslesen() {
+		return checkBox3.isSelected();
+	}
+}

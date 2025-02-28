@@ -1,0 +1,20 @@
+package de.selenium.projekt1;
+
+public class Auto {
+
+	int kilometerStandAktuell;
+	int kilometerStandBevor;
+	double liter;
+	
+	double berechneBenzinVerbrauch() {
+		return (kilometerStandAktuell- kilometerStandBevor)/liter;
+				
+	}
+	
+	public static String getEinheit() {
+		return "kilometer";
+		
+		
+	}
+
+}

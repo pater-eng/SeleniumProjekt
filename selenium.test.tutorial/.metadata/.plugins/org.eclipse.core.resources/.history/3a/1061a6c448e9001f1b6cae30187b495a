@@ -1,0 +1,6 @@
+package de.selenium.tests;
+
+public class Snippet {
+	Verwende einen expliziten Wait (z. B. WebDriverWait), um darauf zu warten, dass das Element sichtbar und interaktiv ist.
+}
+

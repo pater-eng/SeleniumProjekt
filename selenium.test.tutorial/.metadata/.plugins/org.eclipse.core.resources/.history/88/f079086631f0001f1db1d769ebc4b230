@@ -1,0 +1,19 @@
+package de.selenium.pages;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
+
+public class SeleniumTestform3DataDrivenPage {
+	WebDriver driver;
+	//Hier haben wir die Lokatoren definieren
+	
+	private WebElement fdfd;
+	
+	public SeleniumTestform3DataDrivenPage(WebDriver driver) {
+		this.driver = driver;
+		// verwendet, um die WebElemente der Seite zu initialisieren, die im Rahmen des Page Object Modells definiert wurden
+		PageFactory.initElements(driver, this);
+	}
+
+}

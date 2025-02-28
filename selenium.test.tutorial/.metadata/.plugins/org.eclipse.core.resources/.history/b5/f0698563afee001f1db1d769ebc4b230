@@ -1,0 +1,77 @@
+package de.selenium.daten;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvValidationException;
+
+public class CsvReaderExample {
+    public static void main(String[] args) {
+    	 // Pfad zum Verzeichnis, in dem die CSV-Dateien liegen
+        String folderPath = "C:/Users/engoulou/Selenium/Daten/";
+        System.out.println("Directory: "+folderPath);
+        
+        
+        try {
+            // Listen alle Dateien mit Endung.csv aus dem Verzeichnis
+            Files.list(Paths.get(folderPath))
+                .filter(path -> path.toString().endsWith(".csv")) 
+                .forEach(CsvReaderExample::readCsvFile);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void readCsvFile(Path filePath) {
+        System.out.println("Auslesen der Datei : " + filePath.getFileName());
+        List<Form1ParameterizedSeleniumKursChrome> forme1Liste = new ArrayList<>();
+        
+        try (CSVReader reader = new CSVReader(new FileReader(filePath.toFile()))) {
+            String[] nextLine;
+            while ((nextLine = reader.readNext()) != null) {
+                System.out.println(Arrays.toString(nextLine)); // Jeder Zeile ausgeben
+               Form1ParameterizedSeleniumKursChrome forme1ParaListe = mapToForm1(nextLine);
+               forme1Liste.add(forme1ParaListe);
+            }
+        } catch (IOException | CsvValidationException e) {
+            e.printStackTrace();
+        }
+        
+        // Ausgabe der geladenen Form1
+        forme1Liste.forEach(System.out::println);
+    }
+    
+    public static Form1ParameterizedSeleniumKursChrome mapToForm1(String[] daten) {
+    //	int[] firmenBox1 = 
+    //	int[] firmenBox2
+        return new Form1ParameterizedSeleniumKursChrome(daten[0], daten[1], daten[2], daten[3], daten[4], daten[5], daten[6], daten[7],daten[8]);
+    }
+    
+    public static int[] convertToIntArray(String[] daten) {
+        int[] intArray = new int[daten.length];
+        for (int i = 0; i < daten.length; i++) {
+            intArray[i] = Integer.parseInt(daten[i]);
+        }
+        return intArray;
+    }
+    
+    public  static String[] convertToStringArray(int[] daten) {
+	    String[] stringArray = new String[daten.length];
+	    for (int i = 0; i < daten.length; i++) {
+	        stringArray[i] = String.valueOf(daten[i]);
+	    }
+	    return stringArray;
+	}
+	
+	
+}
+
+

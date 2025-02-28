@@ -1,0 +1,102 @@
+package de.selenium.pages.tests;
+
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import java.time.Duration;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class TestForm1SeleniumRemoteChrome {
+	
+	WebDriver driver;
+	
+//	@FindBy(linkText = "Selenium Testapplikationen")
+//	private WebElement linkMenuSeleniumApp;
+
+	@Before
+	public void setUp() throws Exception {
+		System.out.println("initialisiere Webdriver.");
+		System.setProperty("webdriver.chrome.driver", 
+				"./drivers/chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		// Browser auf Maximum vergrößer
+		driver.manage().window().maximize();
+		driver.get("https://seleniumkurs.codingsolo.de");
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		System.out.println("Test abgeschlossen- ich r�ume");
+		//driver.close();
+	}
+
+	
+	@Test
+	public void testLogin() {
+		System.out.println("Starte Test Login mit Erfolg");
+		
+		//Arrange
+		
+		
+		//Login
+		driver.findElement(By.cssSelector("input.form-control[type='text']")).sendKeys("selenium42");
+	    driver.findElement(By.cssSelector("input.form-control[type='password']")).sendKeys("R5vxI0j60");
+		driver.findElement(By.cssSelector("input.btn-primary")).click();
+		//Navigation zum Formular
+		driver.findElement(By.id("portaltab-burger-menu")).click();
+		// <a href="https://seleniumkurs.codingsolo.de/selenium-tests" title="Selenium Testapplikationen">
+		
+//		driver.findElement(By.cssSelector("a[title='Selenium Testapplikationen']")).click();
+		driver.findElement(By.linkText("Selenium Testapplikationen")).click();
+//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//		WebElement link = wait.until(ExpectedConditions.elementToBeClickable(linkMenuSeleniumApp));
+//		link.click();
+		driver.findElement(By.linkText("Selenium Test Form1")).click();
+		
+		// Starte Formular
+		driver.findElement(By.id("form-widgets-betreff")).sendKeys("Automatischer Test");
+		driver.findElement(By.id("form-widgets-name")).sendKeys("Dieter");
+		
+		Select selectAuswahl1 = new Select(driver.findElement(By.id("form-widgets-auswahl1")));
+		selectAuswahl1.selectByVisibleText("Java Grundlagen Kurs mit Dieter");
+		
+		Select selectAuswahl2 = new Select(driver.findElement(By.id("form-widgets-auswahl2-from")));
+		selectAuswahl2.selectByIndex(2);
+		selectAuswahl2.selectByIndex(4);
+		selectAuswahl2.selectByIndex(6);
+		
+		driver.findElement(By.name("from2toButton")).click();
+		
+		Select selecAuswahl3 = new Select(driver.findElement(By.id("form-widgets-auswahl2-to")));
+		selecAuswahl3.selectByIndex(2);
+		
+		driver.findElement(By.name("upButton")).click();
+		
+		//Act
+
+		driver.findElement(By.name("form.buttons.speichern")).click();
+
+		//Assert
+		
+		String erfolgsMeldung = driver.findElement(By.id("message")).getText();
+		assertTrue(erfolgsMeldung.contains("Java Grundlagen Kurs"));
+		
+		String erstesElement = driver.findElement(By.xpath("//ul[@id='companies']/li[1]")).getText();
+		assertEquals(erstesElement, "Magazzini Alimentari Riuniti");
+	}
+	
+
+}

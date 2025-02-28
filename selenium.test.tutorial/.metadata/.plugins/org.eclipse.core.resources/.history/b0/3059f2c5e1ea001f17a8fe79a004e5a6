@@ -1,0 +1,43 @@
+package de.selenium.pages;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class SeleniumIFramePage {
+
+	WebDriver driver;
+	//Hier haben wir die Lokatoren definieren
+
+
+	// Menu Elemente
+	@FindBy(id = "white-logo")
+	private WebElement whiteElement;
+
+
+	public SeleniumIFramePage(WebDriver driver) {
+		this.driver = driver;
+		// verwendet, um die WebElemente der Seite zu initialisieren, die im Rahmen des Page Object Modells definiert wurden
+		PageFactory.initElements(driver, this);
+	}
+	
+	// alle
+	public void moveAllLogosToBox() {
+		Actions actions = new Actions(driver);
+		actions.dragAndDrop(whiteElement, dropBox).build().perform();
+		actions.dragAndDrop(redElement, dropBox).build().perform();
+		actions.dragAndDrop(greenElement, dropBox).build().perform();
+		actions.dragAndDrop(blueElement, dropBox).build().perform();
+		actions.dragAndDrop(codeLogo, dropBox).build().perform();
+	}
+	
+	
+	// Standard Drag and Drop
+	public void moveWhiteLogoToBox(){
+		Actions actions = new Actions(driver);
+		actions.dragAndDrop(whiteElement, dropBox).build().perform();
+	}
+	
+}

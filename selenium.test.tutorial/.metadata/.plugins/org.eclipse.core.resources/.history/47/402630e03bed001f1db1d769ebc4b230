@@ -1,0 +1,89 @@
+package de.selenium.pages.tests;
+
+import static org.junit.Assert.assertTrue;
+
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import de.selenium.pages.SeleniumAppilcationPage;
+import de.selenium.pages.SeleniumHomePage;
+import de.selenium.pages.SeleniumKatzenSuchenPage;
+import de.selenium.pages.SeleniumLoginPage;
+
+
+public class TestKatzenSucheImplizitAsynChrome {
+	WebDriver driver;
+
+	@Before
+	public void setUp() throws Exception {
+		System.out.println("initialisiere Webdriver.");
+		System.setProperty("webdriver.chrome.driver", 
+				"./drivers/chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2)); // Für jede Element 2 Secunde warten.
+		driver.get("https://seleniumkurs.codingsolo.de"); 
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		System.out.println("Test abgeschlossen- ich räume");
+		// driver.close();
+	}
+
+	@Test
+	public void testImplizitWait() {
+		System.out.println("Starte Test AJAX Anwendung mit Implizit Wait");
+
+		// Arrange
+
+		// Login
+		// Anmeldung ist erfolgreich
+		SeleniumLoginPage loginPage = new SeleniumLoginPage(driver);
+		loginPage.zugangsdatenEingeben("selenium42","R5vxI0j60");
+		loginPage.loginButtonAnklicken();
+
+
+		// Navigation zum Formular
+		SeleniumHomePage homePage = new SeleniumHomePage(driver);
+		homePage.menuAusklappen();
+		homePage.seleniumTestAppLinkAnklicken();
+
+		SeleniumAppilcationPage appPage = new SeleniumAppilcationPage(driver);
+		appPage.seleniumLinkKatzensucheTestseiteAJAXAnklicken();
+
+		SeleniumKatzenSuchenPage katzenPage = new SeleniumKatzenSuchenPage(driver);
+		String beschreibung = katzenPage.beschreibungAuslesen();
+		String srcLinkKatzenBild1 = katzenPage.srcLinkImgKatze1Auslesen();
+		System.out.println("Bild1: "+srcLinkKatzenBild1);
+
+		// Act
+
+		katzenPage.nextPage();
+		katzenPage.anzahlBilderEingeben("9");
+		String srcLinkKatzenBild2 = katzenPage.srcLinkImgKatze2Auslesen();
+		String srcLinkKatzenBild3 = katzenPage.srcLinkImgKatze3Auslesen();
+		String srcLinkKatzenBild5 = katzenPage.srcLinkImgKatze5Auslesen();
+		String srcLinkKatzenBild6 = katzenPage.srcLinkImgKatze6Auslesen();
+		String srcLinkKatzenBild7 = katzenPage.srcLinkImgKatze7Auslesen();
+
+		// Assert
+
+		assertTrue(beschreibung.contains("Lieblingskatze"));
+		//assertTrue(srcLinkKatzenBild1.contains("-ssxkBCAy")); 
+		assertTrue(srcLinkKatzenBild1.contains("e4c2e9e4-4918-53b5-84f8-d1d1ec0ed716.png"));
+		//assertTrue(srcLinkKatzenBild2.contains("29RH1pQb5"));
+		assertTrue(srcLinkKatzenBild2.contains("OhajKveSR.jpg"));
+		//assertTrue(srcLinkKatzenBild3.contains("OhajKveSR"));
+		//assertTrue(srcLinkKatzenBild5.contains("OhajKveSR"));
+		//assertTrue(srcLinkKatzenBild6.contains("OhajKveSR"));
+		//assertTrue(srcLinkKatzenBild7.contains("OhajKveSR"));
+
+	}
+
+}

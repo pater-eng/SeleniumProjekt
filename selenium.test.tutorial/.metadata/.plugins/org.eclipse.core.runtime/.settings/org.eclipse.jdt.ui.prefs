@@ -1,0 +1,13 @@
+content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="de.selenium.pages.SeleniumLoginPageMitAnnotation"><rhs name\="de.selenium.pages.SeleniumLoginPageMitAnnotation"/></lhs><lhs name\="de.selenium.pages.SeleniumLoginPage"><rhs name\="de.selenium.pages.SeleniumLoginPage"/></lhs><lhs name\="de.selenium.pages.SeleniumHomePage"><rhs name\="de.selenium.pages.SeleniumHomePage"/></lhs><lhs name\="de.selenium.pages.SeleniumAppilcationPage"><rhs name\="de.selenium.pages.SeleniumAppilcationPage"/></lhs><lhs name\="de.selenium.pages.SeleniumTestForm1Page"><rhs name\="de.selenium.pages.SeleniumTestForm1Page"/></lhs><lhs name\="de.selenium.pages.SeleniumDragDropPage"><rhs name\="de.selenium.pages.SeleniumDragDropPage"/></lhs><lhs name\="de.selenium.pages.SeleniumIFramePage"><rhs name\="de.selenium.pages.SeleniumIFramePage"/></lhs><lhs name\="de.selenium.pages.SeleniumWebElementCheckboxPage"><rhs name\="de.selenium.pages.SeleniumWebElementCheckboxPage"/></lhs><lhs name\="org.openqa.selenium.support.ui.FluentWait"><rhs name\="org.openqa.selenium.support.ui.WebDriverWait"/></lhs><lhs name\="org.openqa.selenium.support.ui.Wait"><rhs name\="org.openqa.selenium.support.ui.WebDriverWait"/></lhs><lhs name\="org.openqa.selenium.support.ui.WebDriverWait"><rhs name\="org.openqa.selenium.support.ui.WebDriverWait"/></lhs></history>
+content_assist_number_of_computers=12
+content_assist_proposals_background=255,255,255
+content_assist_proposals_foreground=0,0,0
+eclipse.preferences.version=1
+org.eclipse.jdt.internal.ui.navigator.layout=2
+org.eclipse.jdt.internal.ui.navigator.librariesnode=true
+org.eclipse.jdt.ui.formatterprofiles.version=23
+sourceHoverBackgroundColor=255,255,225
+spelling_locale_initialized=true
+typefilter_migrated_2=true
+useAnnotationsPrefPage=true
+useQuickDiffPrefPage=true
