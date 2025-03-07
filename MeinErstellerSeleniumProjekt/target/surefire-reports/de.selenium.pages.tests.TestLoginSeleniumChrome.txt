@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: de.selenium.pages.tests.TestLoginSeleniumChrome
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.289 s -- in de.selenium.pages.tests.TestLoginSeleniumChrome
