@@ -1,0 +1,5 @@
+testName;browsername;username;password;betreff;name;kursTitel;firmenBox1;firmenBox2;assert1;assert2
+Test Form 1 Test 1 Chrome;chrome;selenium102;codingsolo;Parametrisierter Test 1;Dieter;Java Grundlagen Kurs mit Dieter;2;4;6;2;4;Java Grundlagen Kurs;Magazzini Alimentari Riuniti
+Test Form 1 Test 1 Chrome;chrome;selenium102;codingsolo;Parametrisierter Test 2;Miriam;Python Grundlagen Kurs mit Dieter;2;4;6;2;4;Java Grundlagen Kurs;Magazzini Alimentari Riuniti
+Test Form 1 Test 1 Firefox;firefox;selenium102;codingsolo;Parametrisierter Test 2;Pater;Java Grundlagen Kurs mit Dieter;2;4;6;2;4;Python Grundlagen Kurs;Magazzini Alimentari Riuniti
+Test Form 1 Test 1 IE;ie;selenium102;codingsolo;Parametrisierter Test 1;Jude;Python Grundlagen Kurs mit Dieter;2;4;6;2;4;Python Grundlagen Kurs;Magazzini Alimentari Riuniti
